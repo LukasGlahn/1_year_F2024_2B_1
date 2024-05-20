@@ -14,9 +14,9 @@ def scan():
     # Process the QR code data as needed
     return jsonify({'status': 'success', 'data': qr_data})
 
-@app.route('/hello_world')
-def hello_world():
-    return '''<h1> hello world </h1>'''
+@app.route('/stock/<int:id>')
+def hello_world(id):
+    return f'''<h1>looking at id:{id}</h1>'''
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')

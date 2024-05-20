@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>QR Code Scanner</title>
     <script src="https://unpkg.com/html5-qrcode"></script>
 </head>
@@ -12,7 +13,7 @@
             // Handle the result here
             console.log(`Code scanned = ${decodedText}`, decodedResult);
             // Send the result to the Flask server
-            location.replace("/hello_world")
+            location.replace(decodedText)
             fetch('/scan', {    
                 method: 'POST',
                 headers: {
