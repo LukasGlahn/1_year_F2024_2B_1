@@ -4,10 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://unpkg.com/html5-qrcode"></script>
 </head>
 <body>
-    {% if [2,current_user.creds] | bitwise_and == 2%}
-    <h1>side</h1>
+    {% if current_user.creds | bitwise_and(2) == 2%}
+    <h1>scan</h1>
+    <div id="reader" style="width:500px;"></div>
+    <script>
+        function onScanSuccess(decodedText, decodedResult) {
+            // Handle the result here
+            console.log(`Code scanned = ${decodedText}`, decodedResult);
+            // Send the result to the Flask server
+            location.replace(decodedText)
+            fetch('/scan', {    
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ data: decodedText }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+
+        function onScanFailure(error) {
+            // Handle the scan failure here
+            console.warn(`Code scan error = ${error}`);
+        }
+
+        let html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader", { fps: 10, qrbox: 250 });
+        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+    </script>
     {% else %}
 	<h1>You do not have permissions</h1>
     {% endif %}

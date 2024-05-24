@@ -67,6 +67,18 @@ def logout():
 	logout_user()
 	return redirect(url_for("index"))
 
+@app.route("/scan")
+def scan():
+	return render_template("scan.html")
+
+@app.route("/admin")
+def admin():
+	return render_template("admin.html")
+
+@app.route("/opret_gest", methods=["GET", "POST"])
+def opret_gest():
+	return render_template("opret_gest.html")
+	
 
 if __name__ == "__main__":
 	app.run()
