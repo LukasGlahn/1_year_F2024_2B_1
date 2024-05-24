@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user
 from flask_bcrypt import Bcrypt 
@@ -39,7 +39,17 @@ def loader_user(user_id):
 
 @app.route("/")
 def index():
+	if request.method == "POST":
+		user = Users.query.filter_by(
+			username=request.form.get("username")).first()
+		if bcrypt.check_password_hash(user.password, request.form.get("password")):
+			login_user(user)
+			return redirect(url_for("home"))
 	return render_template('index.html')
+
+@app.route("/menu")
+def menu():
+	return render_template('menu.html')
 
 
 if __name__ == "__main__":
