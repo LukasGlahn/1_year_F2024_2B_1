@@ -37,19 +37,35 @@ app.jinja_env.filters['bitwise_and'] = bitwise_and
 def loader_user(user_id):
 	return Users.query.get(user_id)
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def index():
 	if request.method == "POST":
 		user = Users.query.filter_by(
 			username=request.form.get("username")).first()
 		if bcrypt.check_password_hash(user.password, request.form.get("password")):
 			login_user(user)
-			return redirect(url_for("home"))
+			return redirect(url_for("menu"))
 	return render_template('index.html')
 
 @app.route("/menu")
 def menu():
 	return render_template('menu.html')
+
+@app.route('/make_user', methods=["GET", "POST"])
+def make_user():
+	if request.method == "POST":
+		user = Users(username=request.form.get("username"),
+					password=bcrypt.generate_password_hash(request.form.get("password")).decode('utf-8'),
+					creds=request.form.get("creds"))
+		db.session.add(user)
+		db.session.commit()
+		return redirect(url_for("menu"))
+	return render_template("make_user.html")
+
+@app.route("/logout")
+def logout():
+	logout_user()
+	return redirect(url_for("index"))
 
 
 if __name__ == "__main__":

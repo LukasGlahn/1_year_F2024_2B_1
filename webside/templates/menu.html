@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if not current_user.is_authenticated %}
+    <meta http-equiv="refresh" content="0; url=/" />
+	{% endif %}
+    <title>Menu</title>
+</head>
+<body>
+    <h1>Menu</h1>
+    <p><a href="/logout">logout</a></p>
+</body>
+</html>
