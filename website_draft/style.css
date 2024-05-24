@@ -1,0 +1,59 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(0, 29, 19);
+  }
+  
+  .hero {
+    background: rgb(0, 29, 19);
+    width: 100%;
+    height: auto; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero-container {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;  
+    width: 100%; 
+    max-width: 300px; 
+    height: auto;
+  }
+  
+  .column-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(211, 187, 123);
+    padding: 0px 32px;
+  }
+  
+  .column-left h1 {
+    margin-bottom: 1rem;
+    font-size: 30px;
+  }
+  
+  button {
+    padding: 16px;
+    font-size: 25px;
+    border: none;
+    color: rgb(211, 187, 123);
+    background-color: rgb(0, 29, 19);
+    cursor: pointer;
+    border-radius: 50px;
+    margin: 10px 0;
+    font-family: "Darby Sans Poster";
+    box-shadow: 0 1px 3px rgb(211, 187, 123); 
+  }
+  
+  .responsive-img {
+    max-width: 200px;
+  }
