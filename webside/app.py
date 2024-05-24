@@ -3,12 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user
 from flask_bcrypt import Bcrypt 
 
+
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite"
 app.config["SECRET_KEY"] = "abc"
 db = SQLAlchemy()
-
-
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -28,7 +27,7 @@ with app.app_context():
 	db.create_all()
 
 
-#jinja fungtions
+#jinja filters
 def bitwise_and(a, b):
     return int(a) & int(b)
 
@@ -38,9 +37,9 @@ app.jinja_env.filters['bitwise_and'] = bitwise_and
 def loader_user(user_id):
 	return Users.query.get(user_id)
 
-
-
-
+@app.route("/")
+def index():
+	return render_template('index.html')
 
 
 if __name__ == "__main__":
