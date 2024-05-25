@@ -38,7 +38,8 @@ body, html {
   
   .column-left h1 {
     margin-bottom: 1rem;
-    font-size: 30px;
+    font-size: 25px;
+    font-family: "Darby Sans Poster";
   }
   
   button {
@@ -52,8 +53,14 @@ body, html {
     margin: 10px 0;
     font-family: "Darby Sans Poster";
     box-shadow: 0 1px 3px rgb(211, 187, 123); 
+    transition: .2s;
   }
   
+  button:hover {
+    transform: scale(1.2);
+  }
+
+
   .responsive-img {
     max-width: 200px;
   }
