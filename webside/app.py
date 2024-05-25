@@ -75,6 +75,7 @@ def logout():
 def scan():
 	return render_template("scan.html")
 
+<<<<<<< Updated upstream
 @app.route("/bagage/<int:qr_nr>/")
 def bagage(qr_nr):
 	bagage_data = storage_db.get_databace_data(f'SELECT gestid FROM bagage WHERE id IS {qr_nr}')
@@ -95,6 +96,14 @@ def bagage_udlevering(qr_nr):
 	else:
 		gest_data = storage_db.get_databace_data(f'SELECT * FROM bagage WHERE gestid IS {gestid}')
 	return render_template("bagage.html",gest_data = gest_data, qr_nr = qr_nr,warn = 'none')
+=======
+@app.route("/bagage/<int:qr_nr>")
+def scan(qr_nr):
+	storage_db.get_databace_data(f'SELECT gestid FROM bagage WHERE id IS {qr_nr}')
+	
+	storage_db.get_databace_data(f'SELECT * FROM gest WHERE id IS {gestid}')
+	return render_template("bagage.html")
+>>>>>>> Stashed changes
 
 @app.route("/admin")
 def admin():
