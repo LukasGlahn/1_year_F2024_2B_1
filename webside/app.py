@@ -88,9 +88,11 @@ def opret_gest():
 		print(gest)
 		db_log = storage_db.add_to_databace('INSERT INTO gest (name, email, room, uid) VALUES(?, ?, ?, ?)',gest)
 		if type(db_log) is str:
-			return jsonify({'status': 'success', 'data': db_log})
-		return render_template("opret_gest.html")
-	return render_template("opret_gest.html")
+			split_log = db_log.split('.')
+			return render_template("opret_gest.html",warn = f'{split_log[1]} Already In Use')
+		else:
+			return render_template("opret_gest.html",warn = 'Gest Successfully Created')
+	return render_template("opret_gest.html",warn = 'none')
 	
 
 if __name__ == "__main__":
