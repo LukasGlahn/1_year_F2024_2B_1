@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+    {% if current_user.creds | bitwise_and(2) == 2%}
+    {% if warn == "none"  %}
+    <h1>The gest bagage</h1>
+    
+    <p><a href="/scan">back to scan</a></p>
+    {% else %}
+    <h1>{{warn}}</h1>
+    <p><a href="/scan">back to scan</a></p>
+    {% endif %}
+    {% else %}
+	<h1>You do not have permissions</h1>
+    <p><a href="/menu">menu</a></p>
+    {% endif %}
+</body>
+</html>

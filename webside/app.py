@@ -63,7 +63,7 @@ def make_user():
 					creds=request.form.get("creds"))
 		db.session.add(user)
 		db.session.commit()
-		return redirect(url_for("menu"))
+		return redirect(url_for("admin"))
 	return render_template("make_user.html")
 
 @app.route("/logout")
@@ -83,6 +83,17 @@ def bagage(qr_nr):
 		return render_template("bagage.html",warn = 'TAG HAS NO DATA')
 	else:
 		gest_data = storage_db.get_databace_data(f'SELECT * FROM gest WHERE id IS {gestid}')
+	return render_template("bagage.html",gest_data = gest_data, qr_nr = qr_nr,warn = 'none')
+
+@app.route("/bagage_udlevering/<int:qr_nr>/")
+def bagage_udlevering(qr_nr):
+	gestid = storage_db.get_databace_data(f'SELECT id FROM gest WHERE uid IS {qr_nr}')
+	gestid = gestid[0][0]
+	bagage = storage_db.get_databace_data(f'SELECT id FROM bagage WHERE gestid IS {gestid}')
+	if gestid is None:
+		return render_template("bagage_udlevering.html",warn = 'GEST DOSE NOT EXSIST')
+	else:
+		gest_data = storage_db.get_databace_data(f'SELECT * FROM bagage WHERE gestid IS {gestid}')
 	return render_template("bagage.html",gest_data = gest_data, qr_nr = qr_nr,warn = 'none')
 
 @app.route("/admin")
