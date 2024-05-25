@@ -3,20 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{url_for('static', filename='style.css') }}" />
     <title>Make User</title>
 </head>
 <body>
+	<div class="container">
+		<div class="column-left">
     {% if current_user.creds | bitwise_and(2) == 2%}
-    <h1>Create an account</h1>
+	<h1 class="responsive-h1">CREATE ACCOUNT</h1>
 	<form action="#" method="post">
-	<label for="username">Username:</label>
+	<label for="username">USERNAME</label>
 	<input type="text" name="username" />
-	<label for="password">Password:</label>
+	<label for="password">PASSWORD</label>
 	<input type="password" name="password" />
-	<label for="creds">Creds:</label>
-	<input type="text" name="creds" />
-	<button type="submit">Submit</button>
-	</form>
+	<form>
+		<input type="checkbox" id="ADMIN" name="admin" value="ADMIN">
+		<label for="ADMIN">ADMIN</label>
+		<input type="checkbox" id="REGISTER GUEST" name="opret_gest" value="REGISTER GUEST">
+		<label for="REGISTER GUEST">REGISTER GUEST</label>
+		<input type="checkbox" id="SCAN QR" name="scan" value="SCAN QR">
+		<label for="SCAN QR">SCAN QR</label>
+		<button type="submit">SUBMIT</button>
+	  </form>
+	 		<a href="/menu"><button>HOME</button></a> 
     {% else %}
 	<h1>You do not have permissions</h1>
 	<p><a href="/menu">menu</a></p>

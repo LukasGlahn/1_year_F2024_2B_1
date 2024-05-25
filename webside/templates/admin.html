@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADMIN</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}" />
 </head>
 <body>
-    {% if current_user.creds | bitwise_and(2) == 2%}
-    <h1>side</h1>
+  {% if current_user.creds | bitwise_and(2) == 2%}
+    <div class="container">
+      <div class="column-left">
+        <h1 class="responsive-h1">ADMIN</h1>
+        <a href="/make_user"><button>CREATE USER</button></a>
+        <button>DELETE USER mangler backend</button>
+        <a href="/menu"><button>HOME</button></a>
+        <a href="/logout"><button>SIGN OUT</button></a>        
+      </div>
+    </div>
     {% else %}
-	<h1>You do not have permissions</h1>
+    <h1>You do not have permissions</h1>
     {% endif %}
 </body>
 </html>
