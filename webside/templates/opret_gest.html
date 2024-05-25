@@ -1,25 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GUEST REGISTRATION</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}" />
 </head>
 <body>
-    {% if current_user.creds | bitwise_and(2) == 2%}
-    <form action="#" method="post">
-    <label for="name">Name:</label>
-    <input type="text" name="name" />
-    <label for="email">E-mail:</label>
-    <input type="email" name="email" />
-    <label for="room">Room:</label>
-    <input type="number" name="room" />
-    <label for="luggage_number">Luggage Number:</label>
-    <input type="number" name="luggage_number" />
-    <button type="submit">Submit</button>
-    </form>
-    {% else %}
-	<h1>You do not have permissions</h1>
-    {% endif %}
+  <section class="hero">
+    <div class="hero-container">
+      <div class="column-left">
+        <h1 class="responsive-h1">GUEST REGISTRATION</h1>
+        {% if current_user.creds | bitwise_and(2) == 2%}
+        <form action="#" method="post">
+        <label for="name">NAME</label>
+        <input type="text" name="name" />
+        <label for="email">EMAIL</label>
+        <input type="email" name="email" />
+        <label for="room">ROOM</label>
+        <input type="number" name="room" />
+        <label for="luggage_number">LUGGAGE NUMBER</label>
+        <input type="number" name="luggage_number" />
+        <button type="submit">SUBMIT</button>
+        </form>
+        {% else %}
+      <h1>You do not have permissions</h1>
+        {% endif %}
+        <button>UPDATE GUEST INFO afventer back end kode</button>
+        <a href="/logout"><button>SIGN OUT</button></a>
+        <a href="/menu"><button>HOME</button></a>
+      </div>
+    </div>
+  </section>
 </body>
 </html>
