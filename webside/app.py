@@ -3,6 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user
 from flask_bcrypt import Bcrypt 
 from databace_conector import DataBase
+import hashlib
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -80,8 +82,14 @@ def admin():
 @app.route("/opret_gest", methods=["GET", "POST"])
 def opret_gest():
 	if request.method == "POST":
-		gest = (request.form.get("name"),request.form.get("email"),request.form.get("room"))
-		
+		uid = f'{request.form.get("name")}{request.form.get("email")}{datetime.now()}'
+		hashed_data = hashlib.md5(uid.encode())
+		gest = (request.form.get("name"),request.form.get("email"),request.form.get("room"),hashed_data.hexdigest())
+		print(gest)
+		db_log = storage_db.add_to_databace('INSERT INTO gest (name, email, room, uid) VALUES(?, ?, ?, ?)',gest)
+		if type(db_log) is str:
+			return jsonify({'status': 'success', 'data': db_log})
+		return render_template("opret_gest.html")
 	return render_template("opret_gest.html")
 	
 

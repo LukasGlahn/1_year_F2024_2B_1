@@ -13,11 +13,11 @@ class DataBase():
             conn.commit()
 
         except sqlite3.Error as sql_e:
-            print(f'sqlite encounterd a error: {sql_e}')
             conn.rollback()
+            return f'sqlite encounterd a error: {sql_e}'
 
         except Exception as e:
-            print(f'encounterd a error: {e}')
+            return f'encounterd a error: {e}'
 
         finally:
             conn.close()
