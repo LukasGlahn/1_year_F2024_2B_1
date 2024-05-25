@@ -1,0 +1,121 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(0, 29, 19);
+}
+
+.hero {
+  background: rgb(0, 29, 19);
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-container {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+.column-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgb(211, 187, 123);
+  padding: 0px 32px;
+}
+
+.column-left h1 {
+  margin-bottom: 1rem;
+  font-size: 25px;
+  font-family: "Darby Sans Poster";
+}
+
+button {
+  padding: 16px;
+  font-size: 15px;
+  border: none;
+  color: rgb(211, 187, 123);
+  background-color: rgb(0, 29, 19);
+  cursor: pointer;
+  border-radius: 50px;
+  margin: 10px 0;
+  font-family: "Darby Sans Poster";
+  box-shadow: 0 1px 3px rgb(211, 187, 123);
+  transition: .2s;
+  width: 100%;
+}
+
+button:hover {
+  transform: scale(1.2);
+}
+
+
+
+
+form {
+  width: 100%;
+  max-width: 300px;
+}
+
+form label {
+  display: block;
+  margin: 10px 0 5px;
+  font-size: 14px;
+  color: rgb(211, 187, 123);
+  text-align: left;
+  width: 100%;
+}
+
+form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid rgb(211, 187, 123);
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: rgb(0, 29, 19);
+  color: rgb(211, 187, 123);
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="number"] {
+  background-color: rgb(0, 29, 19);
+  color: rgb(211, 187, 123);
+}
+
+form input:focus {
+  border-color: rgb(255, 255, 255);
+  outline: none;
+}
+
+form button {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  border: none;
+  color: rgb(211, 187, 123);
+  background-color: rgb(0, 29, 19);
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-family: "Darby Sans Poster";
+  box-shadow: 0 1px 3px rgb(211, 187, 123);
+  transition: .2s;
+}
+
+form button:hover {
+  transform: scale(1.1);
+}

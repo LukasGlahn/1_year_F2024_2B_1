@@ -89,9 +89,9 @@ def opret_gest():
 		db_log = storage_db.add_to_databace('INSERT INTO gest (name, email, room, uid) VALUES(?, ?, ?, ?)',gest)
 		if type(db_log) is str:
 			split_log = db_log.split('.')
-			return render_template("opret_gest.html",warn = f'{split_log[1]} Already In Use')
+			return render_template("opret_gest.html",warn = f'{split_log[1].upper()} ALREADY IN USE')
 		else:
-			return render_template("opret_gest.html",warn = 'Gest Successfully Created')
+			return render_template("opret_gest.html",warn = 'GUEST SUCCESFULLY CREATED')
 	return render_template("opret_gest.html",warn = 'none')
 	
 

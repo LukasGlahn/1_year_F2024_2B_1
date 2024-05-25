@@ -11,8 +11,21 @@
     <div class="hero-container">
       <div class="column-left">
         <h1 class="responsive-h1">GUEST REGISTRATION</h1>
-        <button>REGISTER GUEST</button>
-        <button>REGISTER LUGGAGE</button>
+        {% if current_user.creds | bitwise_and(2) == 2%}
+        <form action="#" method="post">
+        <label for="name">Name:</label>
+        <input type="text" name="name" />
+        <label for="email">E-mail:</label>
+        <input type="email" name="email" />
+        <label for="room">Room:</label>
+        <input type="number" name="room" />
+        <label for="luggage_number">Luggage Number:</label>
+        <input type="number" name="luggage_number" />
+        <button type="submit">Submit</button>
+        </form>
+        {% else %}
+      <h1>You do not have permissions</h1>
+        {% endif %}
         <button>UPDATE GUEST INFO</button>
         <button>SIGN OUT</button>
         <button>HOME</button>
