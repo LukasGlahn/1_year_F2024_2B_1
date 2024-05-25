@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% if not current_user.is_authenticated %}
-    <meta http-equiv="refresh" content="0; url=/" />
-	{% endif %}
-    <title>Menu</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HOME</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}" />
 </head>
 <body>
-    <h1>Menu</h1>
-    <p><a href="/logout">logout</a></p>
+  <section class="home-container">
+    <div class="column-left">
+      <h1><img src="{{url_for('static', filename='cropped-SANDERS-LOGO2-002.png')}}" alt="logo"></h1>
+      <a href="/admin"><button>ADMIN</button></a>
+      <a href="/scan"><button>SCAN QR</button></a>
+      <a href="/opret_gest"><button>REGISTER GUEST</button></a>
+      <a href="/logout"><button>SIGN OUT</button></a>
+    </div>
+  </section>
 </body>
 </html>

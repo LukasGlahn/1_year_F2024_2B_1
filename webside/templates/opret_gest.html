@@ -7,16 +7,15 @@
   <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}" />
 </head>
 <body>
-  <section class="hero">
-    <div class="hero-container">
-      <div class="column-left">
-        <h1 class="responsive-h1">GUEST REGISTRATION</h1>
-        {% if current_user.creds | bitwise_and(2) == 2%}
-        {% if warn == "none"  %}
-        {% else %}
-        <h1>{{warn}}</h1>
-        {% endif %}
-        <form action="#" method="post">
+  <div class="container">
+    <div class="column-left">
+      <h1 class="responsive-h1">GUEST REGISTRATION</h1>
+      {% if current_user.creds | bitwise_and(2) == 2%}
+      {% if warn == "none"  %}
+      {% else %}
+      <h1>{{warn}}</h1>
+      {% endif %}
+      <form action="#" method="post">
         <label for="name">NAME</label>
         <input type="text" name="name" />
         <label for="email">EMAIL</label>
@@ -26,15 +25,14 @@
         <label for="luggage_number">LUGGAGE NUMBER</label>
         <input type="number" name="luggage_number" />
         <button type="submit">SUBMIT</button>
-        </form>
-        {% else %}
+      </form>
+      {% else %}
       <h1>You do not have permissions</h1>
-        {% endif %}
-        <button>UPDATE GUEST INFO afventer back end kode</button>
-        <a href="/logout"><button>SIGN OUT</button></a>
-        <a href="/menu"><button>HOME</button></a>
-      </div>
+      {% endif %}
+      <button>UPDATE GUEST INFO afventer back end kode</button>
+      <a href="/logout"><button>SIGN OUT</button></a>
+      <a href="/menu"><button>HOME</button></a>
     </div>
-  </section>
+  </div>
 </body>
 </html>
