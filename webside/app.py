@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user
 from flask_bcrypt import Bcrypt 
+from databace_conector import DataBase
 
 
 app = Flask(__name__)
@@ -19,6 +20,7 @@ class Users(UserMixin, db.Model):
 	password = db.Column(db.String(250), nullable=False)
 	creds = db.Column(db.Integer, nullable=False)
 
+storage_db = DataBase('database/storage.db')
 
 db.init_app(app)
 bcrypt = Bcrypt(app) 
@@ -77,6 +79,9 @@ def admin():
 
 @app.route("/opret_gest", methods=["GET", "POST"])
 def opret_gest():
+	if request.method == "POST":
+		gest = (request.form.get("name"),request.form.get("email"),request.form.get("room"))
+		
 	return render_template("opret_gest.html")
 	
 
