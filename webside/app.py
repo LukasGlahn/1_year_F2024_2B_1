@@ -75,6 +75,16 @@ def logout():
 def scan():
 	return render_template("scan.html")
 
+@app.route("/bagage/<int:qr_nr>/")
+def bagage(qr_nr):
+	bagage_data = storage_db.get_databace_data(f'SELECT gestid FROM bagage WHERE id IS {qr_nr}')
+	gestid = bagage_data[0][0]
+	if gestid is None:
+		return render_template("bagage.html",warn = 'TAG HAS NO DATA')
+	else:
+		gest_data = storage_db.get_databace_data(f'SELECT * FROM gest WHERE id IS {gestid}')
+	return render_template("bagage.html",gest_data = gest_data, qr_nr = qr_nr,warn = 'none')
+
 @app.route("/admin")
 def admin():
 	return render_template("admin.html")
