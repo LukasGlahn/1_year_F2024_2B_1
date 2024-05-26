@@ -83,18 +83,39 @@ def bagage(qr_nr):
 		return render_template("bagage.html",warn = 'TAG HAS NO DATA')
 	else:
 		gest_data = storage_db.get_databace_data(f'SELECT * FROM gest WHERE id IS {gestid}')
-	return render_template("bagage.html",gest_data = gest_data, qr_nr = qr_nr,warn = 'none')
+		return render_template("bagage.html",gest_data = gest_data, qr_nr = qr_nr,warn = 'none')
 
-@app.route("/bagage_udlevering/<int:qr_nr>/")
+@app.route("/bagage_udlevering/<qr_nr>/", methods=["GET", "POST"])
 def bagage_udlevering(qr_nr):
-	gestid = storage_db.get_databace_data(f'SELECT id FROM gest WHERE uid IS {qr_nr}')
-	gestid = gestid[0][0]
-	bagage = storage_db.get_databace_data(f'SELECT id FROM bagage WHERE gestid IS {gestid}')
-	if gestid is None:
+	gestid = storage_db.get_databace_data(f'SELECT id FROM gest WHERE uid IS "{qr_nr}"')
+	print(gestid)
+	if request.method == "POST":
+		info = 'NOTHING WAS DONE'
+		gestid = gestid[0][0]
+		gest_bagage = storage_db.get_databace_data(f'SELECT id FROM bagage WHERE gestid IS {gestid}')
+		bagage_list = []
+		for bagage in gest_bagage:
+			bag = request.form.get(str(bagage[0]))
+			print(type(bag))
+			if type(bag) == str:
+				info = 'BAG(S) CHECKD OUT SUCSESFULY'
+				print(bag)
+				storage_db.add_to_databace(f'UPDATE bagage SET gestid = NULL WHERE id = {bag};',())
+			else:
+				bagage_list.append(bagage[0])
+		if len(bagage_list) == 0:
+			storage_db.add_to_databace(f'DELETE FROM gest WHERE id = {gestid};',())
+			info = 'GEST CHECED OUT'
+		return render_template("bagage_udlevering.html",warn = 'none',bagage_list = bagage_list, bagage_list_len = len(bagage_list),info = info)
+	elif gestid is None:
 		return render_template("bagage_udlevering.html",warn = 'GEST DOSE NOT EXSIST')
 	else:
-		gest_data = storage_db.get_databace_data(f'SELECT * FROM bagage WHERE gestid IS {gestid}')
-	return render_template("bagage.html",gest_data = gest_data, qr_nr = qr_nr,warn = 'none')
+		gestid = gestid[0][0]
+		gest_bagage = storage_db.get_databace_data(f'SELECT id FROM bagage WHERE gestid IS {gestid}')
+		bagage_list = []
+		for bagage in gest_bagage:
+			bagage_list.append(bagage[0])
+		return render_template("bagage_udlevering.html",warn = 'none', bagage_list = bagage_list, bagage_list_len = len(bagage_list), info = 'none')
 
 @app.route("/admin")
 def admin():

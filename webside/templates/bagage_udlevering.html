@@ -4,13 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://unpkg.com/html5-qrcode"></script>
 </head>
 <body>
     {% if current_user.creds | bitwise_and(2) == 2%}
     {% if warn == "none"  %}
-    <h1>The gest bagage</h1>
-    
+    {% if info != "none"  %}
+    <h1 class="responsive-h1">{{info}}</h1>
+    {% endif %}
+    <h1 class="responsive-h1">The gest bagage</h1>
+    <h1 class="responsive-h1">MARK AS DELIVERD</h1>
+    {%for i in range(0, bagage_list_len)%} 
+    <form action="#" method="post">
+    <input type="checkbox" id="bagage" name={{bagage_list[i]}} value={{bagage_list[i]}}>
+	<label for="bagage">Tag NR: {{bagage_list[i]}}</label>
+    {%endfor%}
+    <button type="submit">SUBMIT</button>
+    </form>
     <p><a href="/scan">back to scan</a></p>
     {% else %}
     <h1>{{warn}}</h1>
