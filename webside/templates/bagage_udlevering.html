@@ -3,31 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}" />
     <title>Document</title>
 </head>
 <body>
-    {% if current_user.creds | bitwise_and(2) == 2%}
-    {% if warn == "none"  %}
-    {% if info != "none"  %}
-    <h1 class="responsive-h1">{{info}}</h1>
-    {% endif %}
-    <h1 class="responsive-h1">The gest bagage</h1>
-    <h1 class="responsive-h1">MARK AS DELIVERD</h1>
-    <form action="#" method="post">
-    {%for i in range(0, bagage_list_len)%} 
-    <input type="checkbox" id="bagage" name={{bagage_list[i]}} value={{bagage_list[i]}}>
-	<label for="bagage">Tag NR: {{bagage_list[i]}}</label>
-    {%endfor%}
-    <button type="submit">SUBMIT</button>
-    </form>
-    <p><a href="/scan">back to scan</a></p>
-    {% else %}
-    <h1>{{warn}}</h1>
-    <p><a href="/scan">back to scan</a></p>
-    {% endif %}
-    {% else %}
-	<h1>You do not have permissions</h1>
-    <p><a href="/menu">menu</a></p>
-    {% endif %}
+    <section class="home-container">
+        <div class="column-left">
+        {% if current_user.creds | bitwise_and(2) == 2%}
+        {% if warn == "none"  %}
+        {% if info != "none"  %}
+        <h1 class="responsive-h1">{{info}}</h1>
+        {% endif %}
+        <h1><img src="{{url_for('static', filename='cropped-SANDERS-LOGO2-002.png')}}" alt="logo"></h1>
+        <h1 class="responsive-h1">THE GEST'S BAGAGE</h1>
+        <h1 class="responsive-h1">MARK BAGAGE AS DELIVERD</h1>
+        <form action="#" method="post">
+        {%for i in range(0, bagage_list_len)%} 
+        <input type="checkbox" id={{bagage_list[i]}} name={{bagage_list[i]}} value={{bagage_list[i]}}>
+        <label for={{bagage_list[i]}}>Tag NR: {{bagage_list[i]}}</label>
+        {%endfor%}
+        <button type="submit">SUBMIT</button>
+        </form>
+        <a href="/scan"><button>BACK TO SCAN</button></a>
+        {% else %}
+        <h1><img src="{{url_for('static', filename='cropped-SANDERS-LOGO2-002.png')}}" alt="logo"></h1>
+        <h1>{{warn}}</h1>
+        <a href="/scan"><button>BACK TO SCAN</button></a>
+        {% endif %}
+        {% else %}
+        <h1>You do not have permissions</h1>
+        <p><a href="/menu">menu</a></p>
+        {% endif %}
+        </div>
+    </section>
 </body>
 </html>
