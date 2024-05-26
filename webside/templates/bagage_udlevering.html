@@ -13,8 +13,8 @@
     {% endif %}
     <h1 class="responsive-h1">The gest bagage</h1>
     <h1 class="responsive-h1">MARK AS DELIVERD</h1>
-    {%for i in range(0, bagage_list_len)%} 
     <form action="#" method="post">
+    {%for i in range(0, bagage_list_len)%} 
     <input type="checkbox" id="bagage" name={{bagage_list[i]}} value={{bagage_list[i]}}>
 	<label for="bagage">Tag NR: {{bagage_list[i]}}</label>
     {%endfor%}

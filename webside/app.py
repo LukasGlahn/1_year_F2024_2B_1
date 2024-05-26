@@ -107,7 +107,7 @@ def bagage_udlevering(qr_nr):
 			storage_db.add_to_databace(f'DELETE FROM gest WHERE id = {gestid};',())
 			info = 'GEST CHECED OUT'
 		return render_template("bagage_udlevering.html",warn = 'none',bagage_list = bagage_list, bagage_list_len = len(bagage_list),info = info)
-	elif gestid is None:
+	elif len(gestid) == 0:
 		return render_template("bagage_udlevering.html",warn = 'GEST DOSE NOT EXSIST')
 	else:
 		gestid = gestid[0][0]
@@ -127,12 +127,20 @@ def opret_gest():
 		uid = f'{request.form.get("name")}{request.form.get("email")}{datetime.now()}'
 		hashed_data = hashlib.md5(uid.encode())
 		gest = (request.form.get("name"),request.form.get("email"),request.form.get("room"),hashed_data.hexdigest())
+		gest_bagage = request.form.get("luggage_number").replace(' ','').split(',')
 		print(gest)
+		print(gest_bagage)
 		db_log = storage_db.add_to_databace('INSERT INTO gest (name, email, room, uid) VALUES(?, ?, ?, ?)',gest)
 		if type(db_log) is str:
 			split_log = db_log.split('.')
 			return render_template("opret_gest.html",warn = f'{split_log[1].upper()} ALREADY IN USE')
 		else:
+			gestid = storage_db.get_databace_data(f'SELECT id FROM gest WHERE uid IS "{hashed_data.hexdigest()}"')
+			for bagage in gest_bagage:
+				bagage = int(bagage)
+				print(bagage)
+				print(gestid)
+				print(storage_db.add_to_databace(f'UPDATE bagage SET gestid = {gestid[0][0]} WHERE id = {bagage};',()))
 			return render_template("opret_gest.html",warn = 'GUEST SUCCESFULLY CREATED')
 	return render_template("opret_gest.html",warn = 'none')
 	
