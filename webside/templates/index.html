@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<link rel="stylesheet" href="{{url_for('static', filename='style.css') }}" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>LOGIN</title>
     {% if current_user.is_authenticated %}
     <meta http-equiv="refresh" content="0; url=/menu" />
 	{% endif %}
 </head>
 
 <body>
+<div class="container">
     {% if not current_user.is_authenticated %}
-    <h1>Login to your account</h1>
+    <h1>LOGIN</h1>
 	<form action="#" method="post">
-	<label for="username">Username:</label>
+	<label for="username">USERNAME</label>
 	<input type="text" name="username" />
-	<label for="password">Password:</label>
+	<label for="password">PASSWORD</label>
 	<input type="password" name="password" />
-	<button type="submit">Submit</button>
+	<button type="submit">SUBMIT</button>
 	{% endif %}
+</div>
 </body>
 </html>

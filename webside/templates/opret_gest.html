@@ -1,30 +1,50 @@
-<link rel="stylesheet" href="{{url_for('static', filename='style.css') }}" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guest Registration</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}" />
+    <script language="javascript" type="text/javascript">   
+        function AddComma(txt) {
+            let value = txt.value.replace(/, /g, '').replace(/,/g, '');
+            let formattedValue = '';
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 3 == 0) {
+                    formattedValue += ', ';
+                }
+                formattedValue += value[i];
+            }
+            txt.value = formattedValue;
+        }
+    </script>
 </head>
 <body>
-  <div class="container">
-    <div class="column-left">
-      <h1 class="responsive-h1">GUEST REGISTRATION</h1>
-      {% if current_user.creds | bitwise_and(2) == 2%}
-      {% if warn == "none"  %}
-      {% else %}
-      <h1>{{warn}}</h1>
-      {% endif %}
-      <form action="#" method="post">
-        <label for="name">NAME</label>
-        <input type="text" name="name" />
-        <label for="email">EMAIL</label>
-        <input type="email" name="email" />
-        <label for="room">ROOM</label>
-        <input type="number" name="room" />
-        <label for="luggage_number">LUGGAGE NUMBER</label>
-        <input type="number" name="luggage_number" />
-        <button type="submit">SUBMIT</button>
-      </form>
-      {% else %}
-      <h1>You do not have permissions</h1>
-      {% endif %}
-      <button>UPDATE GUEST INFO afventer back end kode</button>
-      <a href="/logout"><button>SIGN OUT</button></a>
-      <a href="/menu"><button>HOME</button></a>
+    <div class="container">
+        <div class="column-left">
+            <h1 class="responsive-h1">GUEST REGISTRATION</h1>
+            {% if current_user.creds | bitwise_and(2) == 2 %}
+                {% if warn == "none" %}
+                {% else %}
+                    <h1>{{warn}}</h1>
+                {% endif %}
+                <form action="#" method="post">
+                    <label for="name">NAME</label>
+                    <input type="text" name="name" />
+                    <label for="email">EMAIL</label>
+                    <input type="email" name="email" />
+                    <label for="room">ROOM</label>
+                    <input type="number" name="room" />
+                    <label for="luggage_number">LUGGAGE NUMBER</label>
+                    <input type="text" name="luggage_number" oninput="AddComma(this)" />
+                    <button type="submit">SUBMIT</button>
+                </form>
+            {% else %}
+                <h1>You do not have permissions</h1>
+            {% endif %}
+            <button>UPDATE GUEST INFO afventer back end kode</button>
+            <a href="/logout"><button>SIGN OUT</button></a>
+            <a href="/menu"><button>HOME</button></a>
+        </div>
     </div>
-  </div>
+</body>
+</html>
