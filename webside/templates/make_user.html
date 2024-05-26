@@ -9,7 +9,7 @@
 <body>
 	<div class="container">
 		<div class="column-left">
-    {% if current_user.creds | bitwise_and(2) == 2%}
+    {% if current_user.creds | bitwise_and(1) == 1%}
 	<h1 class="responsive-h1">CREATE ACCOUNT</h1>
 	<form action="#" method="post">
 	<label for="username">USERNAME</label>
@@ -17,11 +17,11 @@
 	<label for="password">PASSWORD</label>
 	<input type="password" name="password" />
 	<form>
-		<input type="checkbox" id="ADMIN" name="admin" value="ADMIN">
+		<input type="checkbox" id="ADMIN" name="admin" value="1">
 		<label for="ADMIN">ADMIN</label>
-		<input type="checkbox" id="REGISTER GUEST" name="opret_gest" value="REGISTER GUEST">
+		<input type="checkbox" id="REGISTER GUEST" name="opret_gest" value="2">
 		<label for="REGISTER GUEST">REGISTER GUEST</label>
-		<input type="checkbox" id="SCAN QR" name="scan" value="SCAN QR">
+		<input type="checkbox" id="SCAN QR" name="scan" value="4">
 		<label for="SCAN QR">SCAN QR</label>
 		<button type="submit">SUBMIT</button>
 	  </form>

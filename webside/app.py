@@ -15,6 +15,16 @@ db = SQLAlchemy()
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+def make_creds(creds_list):
+    creds = 0
+    for i in creds_list:
+        if i is None:
+            i = 0
+        else:
+            i = int(i)
+        creds = i | creds
+    return creds
+
 
 class Users(UserMixin, db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -58,9 +68,10 @@ def menu():
 @app.route('/make_user', methods=["GET", "POST"])
 def make_user():
 	if request.method == "POST":
+		creds = make_creds((request.form.get("admin"),request.form.get("opret_gest"),request.form.get("scan")))
 		user = Users(username=request.form.get("username"),
 					password=bcrypt.generate_password_hash(request.form.get("password")).decode('utf-8'),
-					creds=request.form.get("creds"))
+					creds=creds)
 		db.session.add(user)
 		db.session.commit()
 		return redirect(url_for("admin"))

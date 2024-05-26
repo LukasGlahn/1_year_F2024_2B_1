@@ -22,7 +22,7 @@
     <div class="container">
         <div class="column-left">
             <h1 class="responsive-h1">GUEST REGISTRATION</h1>
-            {% if current_user.creds | bitwise_and(2) == 2 %}
+            {% if current_user.creds | bitwise_and(4) == 4 %}
                 {% if warn == "none" %}
                 {% else %}
                     <h1>{{warn}}</h1>
@@ -38,10 +38,10 @@
                     <input type="text" name="luggage_number" oninput="AddComma(this)" />
                     <button type="submit">SUBMIT</button>
                 </form>
+                <button>UPDATE GUEST INFO afventer back end kode</button>
             {% else %}
                 <h1>You do not have permissions</h1>
             {% endif %}
-            <button>UPDATE GUEST INFO afventer back end kode</button>
             <a href="/logout"><button>SIGN OUT</button></a>
             <a href="/menu"><button>HOME</button></a>
         </div>

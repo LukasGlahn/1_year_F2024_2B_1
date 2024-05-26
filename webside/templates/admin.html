@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}" />
 </head>
 <body>
-  {% if current_user.creds | bitwise_and(2) == 2%}
+  {% if current_user.creds | bitwise_and(1) == 1%}
     <div class="container">
       <div class="column-left">
         <h1 class="responsive-h1">ADMIN</h1>
@@ -19,6 +19,7 @@
     </div>
     {% else %}
     <h1>You do not have permissions</h1>
+    <a href="/menu"><button>HOME</button></a>
     {% endif %}
 </body>
 </html>

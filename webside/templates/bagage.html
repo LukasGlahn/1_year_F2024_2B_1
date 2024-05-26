@@ -11,14 +11,12 @@
         <div class="column-left">
         {% if current_user.creds | bitwise_and(2) == 2%}
         {% if warn == "none"  %}
-        <h1><img src="{{url_for('static', filename='cropped-SANDERS-LOGO2-002.png')}}" alt="logo"></h1>
         <h1>GEST INFO</h1>
         <h1>NAME: {{gest_data[0][1]}}</h1>
         <h1>EMAIL: {{gest_data[0][2]}}</h1>
         <h1>ROOM: {{gest_data[0][3]}}</h1>
         <a href="/scan"><button>BACK TO SCAN</button></a>
         {% else %}
-        <h1><img src="{{url_for('static', filename='cropped-SANDERS-LOGO2-002.png')}}" alt="logo"></h1>
         <h1>{{warn}}</h1>
         <a href="/scan"><button>BACK TO SCAN</button></a>
         {% endif %}
