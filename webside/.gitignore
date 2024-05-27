@@ -1,4 +1,5 @@
 lukas_desktop/
+webside_env/
 storage.db
 db.sqlite
 __pycache__/
