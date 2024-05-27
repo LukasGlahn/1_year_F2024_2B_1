@@ -154,6 +154,11 @@ def opret_gest():
 			return render_template("opret_gest.html",warn = 'GUEST SUCCESFULLY CREATED')
 	return render_template("opret_gest.html",warn = 'none')
 
+@app.route("/update_gest", methods=["GET", "POST"])
+def update_gest_menu():
+	gests = storage_db.get_databace_data(f'SELECT * FROM gest')
+	return render_template("update_gest_menu.html",gests = gests, gests_len = len(gests))
+
 @app.route("/update_gest/<int:id>", methods=["GET", "POST"])
 def update_gest(id):
 	if request.method == "POST":
@@ -175,7 +180,6 @@ def update_gest(id):
 					storage_db.add_to_databace(f'UPDATE bagage SET gestid = NULL WHERE id = {bag};',())
 			#Add
 			for bagage in gest_bagage_in:
-				print('sdsds',bagage)
 				if bagage == '': break
 				bagage = int(bagage)
 				print(storage_db.add_to_databace(f'UPDATE bagage SET gestid = {id} WHERE id = {bagage};',()))

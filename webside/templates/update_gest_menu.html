@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}" />
+    <title>Gest Data</title>
+</head>
+<body>
+    <section class="container">
+        <div class="column-left">
+        {% if current_user.creds | bitwise_and(2) == 2%}
+        <h1>CHOSE A GUEST</h1>
+        {%for i in range(0, gests_len)%} 
+            <div>
+            <h1>{{gests[i][1]}}</h1>
+            <p><a href="{{'/update_gest/%s'%(gests[i][0])}}"><button>EDIT</button></a></p>
+            </div>
+        {%endfor%}
+        <a href="/menu"><button>MENU</button></a>
+        {% else %}
+        <h1>You do not have permissions</h1>
+        <a href="/menu"><button>MENU</button></a>
+        {% endif %}
+        </div>
+    </section>
+</body>
+</html>
