@@ -1,3 +1,4 @@
 lukas_desktop/
-*.db
+storage.db
+db.sqlite
 __pycache__/
