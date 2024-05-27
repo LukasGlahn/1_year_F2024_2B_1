@@ -109,17 +109,17 @@ def bagage_udlevering(qr_nr):
 			bag = request.form.get(str(bagage[0]))
 			print(type(bag))
 			if type(bag) == str:
-				info = 'BAG(S) CHECKD OUT SUCSESFULY'
+				info = 'BAG(S) CHECKED OUT SUCCESFULLY'
 				print(bag)
 				storage_db.add_to_databace(f'UPDATE bagage SET gestid = NULL WHERE id = {bag};',())
 			else:
 				bagage_list.append(bagage[0])
 		if len(bagage_list) == 0:
 			storage_db.add_to_databace(f'DELETE FROM gest WHERE id = {gestid};',())
-			info = 'GEST CHECED OUT'
+			info = 'GUEST CHECKED OUT'
 		return render_template("bagage_udlevering.html",warn = 'none',bagage_list = bagage_list, bagage_list_len = len(bagage_list),info = info)
 	elif len(gestid) == 0:
-		return render_template("bagage_udlevering.html",warn = 'GEST DOSE NOT EXSIST')
+		return render_template("bagage_udlevering.html",warn = 'GUEST DOES NOT EXIST')
 	else:
 		gestid = gestid[0][0]
 		gest_bagage = storage_db.get_databace_data(f'SELECT id FROM bagage WHERE gestid IS {gestid}')
