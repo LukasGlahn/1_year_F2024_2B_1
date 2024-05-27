@@ -7,14 +7,16 @@
   <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}" />
 </head>
 <body>
-  <section class="home-container">
+  <div class="container">
     <div class="column-left">
-      <h1><img src="{{url_for('static', filename='cropped-SANDERS-LOGO2-002.png')}}" alt="logo"></h1>
+      <a href="/menu">
+        <img src="{{url_for('static', filename='cropped-SANDERS-LOGO2-002.png')}}" alt="logo">
+    </a>
       <a href="/admin"><button>ADMIN</button></a>
       <a href="/scan"><button>SCAN QR</button></a>
       <a href="/opret_gest"><button>REGISTER GUEST</button></a>
+      <button>UPDATE GUEST INFO afventer back end kode</button>
       <a href="/logout"><button>SIGN OUT</button></a>
     </div>
-  </section>
 </body>
 </html>

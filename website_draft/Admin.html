@@ -7,8 +7,8 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <section class="hero">
-    <div class="hero-container">
+  {% if current_user.creds | bitwise_and(2) == 2%}
+    <div class=".home-container">
       <div class="column-left">
         <h1 class="responsive-h1">ADMIN</h1>
         <button>CREATE USER</button>
@@ -17,6 +17,8 @@
         <button>HOME</button>
       </div>
     </div>
-  </section>
+    {% else %}
+    <h1>You do not have permissions</h1>
+    {% endif %}
 </body>
 </html>

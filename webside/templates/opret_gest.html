@@ -9,7 +9,7 @@
             let value = txt.value.replace(/, /g, '').replace(/,/g, '');
             let formattedValue = '';
             for (let i = 0; i < value.length; i++) {
-                if (i > 0 && i % 3 == 0) {
+                if (i > 0 && i % 2 == 0) {
                     formattedValue += ', ';
                 }
                 formattedValue += value[i];
@@ -20,7 +20,11 @@
 </head>
 <body>
     <div class="container">
+        <div class="container">
         <div class="column-left">
+            <a href="/menu">
+                <img src="{{url_for('static', filename='cropped-SANDERS-LOGO2-002.png')}}" alt="logo">
+            </a>
             <h1 class="responsive-h1">GUEST REGISTRATION</h1>
             {% if current_user.creds | bitwise_and(4) == 4 %}
                 {% if warn == "none" %}
@@ -38,11 +42,9 @@
                     <input type="text" name="luggage_number" oninput="AddComma(this)" />
                     <button type="submit">SUBMIT</button>
                 </form>
-                <button>UPDATE GUEST INFO afventer back end kode</button>
             {% else %}
-                <h1>You do not have permissions</h1>
+                <h1>PERMISSION DENIED</h1>
             {% endif %}
-            <a href="/logout"><button>SIGN OUT</button></a>
             <a href="/menu"><button>HOME</button></a>
         </div>
     </div>

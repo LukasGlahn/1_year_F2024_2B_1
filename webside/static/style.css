@@ -7,14 +7,14 @@ body, html {
   background: rgb(0, 29, 19);
 }
 
-.home-container img {
+.container img {
   height: auto;
   width: auto;
   max-height: 250px; 
   max-width: 250px; 
 }
 
-.home-container {
+.container {
   text-align: center;
   color: rgb(211, 187, 123);
 }
