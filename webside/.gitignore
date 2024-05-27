@@ -1,2 +1,3 @@
 lukas_desktop/
 *.db
+/__pycache__
