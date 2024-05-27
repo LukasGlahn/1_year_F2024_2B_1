@@ -54,12 +54,15 @@ def loader_user(user_id):
 @app.route("/", methods=["GET", "POST"])
 def index():
 	if request.method == "POST":
-		user = Users.query.filter_by(
-			username=request.form.get("username")).first()
-		if bcrypt.check_password_hash(user.password, request.form.get("password")):
-			login_user(user)
-			return redirect(url_for("menu"))
-	return render_template('index.html')
+		try:
+			user = Users.query.filter_by(
+				username=request.form.get("username")).first()
+			if bcrypt.check_password_hash(user.password, request.form.get("password")):
+				login_user(user)
+				return redirect(url_for("menu"))
+		except:
+			return render_template('index.html',warn = 'WRONG PASSWORD OR USERNAME')
+	return render_template('index.html', warn = 'none')
 
 @app.route("/menu")
 def menu():
