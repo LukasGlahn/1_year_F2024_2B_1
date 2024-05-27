@@ -12,6 +12,7 @@
 
 <body>
 <div class="container">
+		<img src="{{url_for('static', filename='cropped-SANDERS-LOGO2-002.png')}}" alt="logo">
     {% if not current_user.is_authenticated %}
 	{% if warn != 'none' %}
 	<h1>{{warn}}</h1>
