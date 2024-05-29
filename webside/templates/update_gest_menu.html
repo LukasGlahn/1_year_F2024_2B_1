@@ -7,10 +7,13 @@
     <title>Gest Data</title>
 </head>
 <body>
-    <section class="container">
+    <div class="container">
         <div class="column-left">
+            <a href="/menu">
+                <img src="{{url_for('static', filename='cropped-SANDERS-LOGO2-002.png')}}" alt="logo">
+            </a>
         {% if current_user.creds | bitwise_and(2) == 2%}
-        <h1>CHOSE A GUEST</h1>
+        <h1>CHOOSE A GUEST</h1>
         {%for i in range(0, gests_len)%} 
             <div>
             <h1>{{gests[i][1]}}</h1>

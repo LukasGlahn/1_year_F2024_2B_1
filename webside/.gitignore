@@ -1,5 +1,6 @@
 lukas_desktop/
 webside_env/
+venvscott/
 storage.db
 db.sqlite
 __pycache__/

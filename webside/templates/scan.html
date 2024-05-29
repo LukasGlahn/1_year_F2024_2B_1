@@ -14,6 +14,7 @@
             <img src="{{url_for('static', filename='cropped-SANDERS-LOGO2-002.png')}}" alt="logo">
         </a>
     {% if current_user.creds | bitwise_and(2) == 2%}
+
     <h1>SCAN QR</h1>
     <a href="/menu"><button>HOME</button></a>
     <div id="reader" style="width:500px;"></div>
