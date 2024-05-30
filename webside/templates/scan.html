@@ -20,13 +20,13 @@
     <div id="reader" style="width:500px;"></div>
     <script>
         function onScanSuccess(decodedText, decodedResult) {
-            // Handle the result here
+            
             console.log(`Code scanned = ${decodedText}`, decodedResult);
-            // Send the result to the Flask server
+            
             location.replace(decodedText)
         }
         function onScanFailure(error) {
-            // Handle the scan failure here
+
             console.warn(`Code scan error = ${error}`);
         }
 
