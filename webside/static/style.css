@@ -19,11 +19,6 @@ body, html {
   color: rgb(211, 187, 123);
 }
 
-.container {
-  text-align: center;
-  color: rgb(211, 187, 123);
-}
-
 .column-left {
   display: flex;
   flex-direction: column;
